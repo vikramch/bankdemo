@@ -1,7 +1,7 @@
 package com.vikram.macquarie.bankdemo.controller;
 
 import com.vikram.macquarie.bankdemo.domain.model.Account;
-import com.vikram.macquarie.bankdemo.responses.AccountListResponse;
+import com.vikram.macquarie.bankdemo.response.AccountListResponse;
 import com.vikram.macquarie.bankdemo.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

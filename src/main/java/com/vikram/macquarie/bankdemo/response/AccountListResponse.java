@@ -1,4 +1,4 @@
-package com.vikram.macquarie.bankdemo.responses;
+package com.vikram.macquarie.bankdemo.response;
 
 import com.vikram.macquarie.bankdemo.domain.model.Account;
 import lombok.Data;

@@ -1,11 +1,9 @@
 package com.vikram.macquarie.bankdemo.service;
 
-import com.vikram.macquarie.bankdemo.database.entities.AccountEntity;
 import com.vikram.macquarie.bankdemo.domain.model.Account;
 import com.vikram.macquarie.bankdemo.repository.AccountRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
