@@ -3,6 +3,7 @@ package com.vikram.macquarie.bankdemo.database.entity;
 import com.vikram.macquarie.bankdemo.common.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "transactions")
 @Data
+@NoArgsConstructor
 public class TransactionEntity {
 
     /**
@@ -50,6 +52,7 @@ public class TransactionEntity {
     @Column(name="transaction_narrative", nullable = false)
     private String transactionNarrative;
 
-
-
+    public TransactionEntity(String transactionId) {
+        this.transactionId = transactionId;
+    }
 }

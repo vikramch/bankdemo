@@ -4,6 +4,7 @@ import com.vikram.macquarie.bankdemo.context.RequestContext;
 import com.vikram.macquarie.bankdemo.domain.model.Account;
 import com.vikram.macquarie.bankdemo.repository.AccountRepository;
 import com.vikram.macquarie.bankdemo.repository.DatabaseException;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class AccountService {
     }
 
     // Get all Accounts
-    public List<Account> fetchAllAccounts(RequestContext requestContext)
+    public List<Account> fetchAllAccounts(@NonNull RequestContext requestContext)
     throws DataAccessException {
         try {
             return accountRepository.getAccountsByUserId(requestContext.getUserId());
@@ -29,7 +30,8 @@ public class AccountService {
 
     }
 
-    public  boolean doesUserHaveAccessToAccount(RequestContext requestContext, String accountNumber)
+    public  boolean doesUserHaveAccessToAccount(@NonNull RequestContext requestContext,
+                                                @NonNull String accountNumber)
     throws DataAccessException {
         List<Account> accounts = fetchAllAccounts(requestContext);
         return accounts.stream().anyMatch(

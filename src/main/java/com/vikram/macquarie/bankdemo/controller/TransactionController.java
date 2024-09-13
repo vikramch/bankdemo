@@ -5,6 +5,7 @@ import com.vikram.macquarie.bankdemo.common.error.ErrorCodeEnum;
 import com.vikram.macquarie.bankdemo.context.RequestContext;
 import com.vikram.macquarie.bankdemo.domain.model.Transaction;
 import com.vikram.macquarie.bankdemo.response.AccountTransactionsResponse;
+import com.vikram.macquarie.bankdemo.response.Pagination;
 import com.vikram.macquarie.bankdemo.response.Status;
 import com.vikram.macquarie.bankdemo.service.AccountService;
 import com.vikram.macquarie.bankdemo.service.DataAccessException;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,7 +42,9 @@ public class TransactionController {
     @GetMapping("/account/{accountNumber}/transactions")
     public ResponseEntity<AccountTransactionsResponse>
     getTransactionsByAccountNumber(@PathVariable("accountNumber") String accountNumber,
-                                   HttpServletRequest request) {
+                                   HttpServletRequest request,
+                                   @RequestParam(defaultValue = "0") int offset,
+                                   @RequestParam(defaultValue = "100") int limit) {
         /*
          * For demo purposes, getting the userId through a Request Header("user_id"),
          * In Prod, userId can be obtained from Security Context.
@@ -51,7 +55,7 @@ public class TransactionController {
 
         //Check if User has permissions to Account to access its transactions
         ResponseEntity<AccountTransactionsResponse> errorResponse =
-                validateTransactionsAccessForUser(requestContext, accountNumber);
+                validateAccountAccessForUser(requestContext, accountNumber);
         if (errorResponse != null) return errorResponse;
 
         //Get all transactions related to the Account
@@ -70,10 +74,18 @@ public class TransactionController {
 
         AccountTransactionsResponse response = new AccountTransactionsResponse(Status.SUCCESS);
         response.setTransactions(accountTransactions);
+        handlePagination(offset, limit, response);
         return new ResponseEntity<AccountTransactionsResponse>(response, HttpStatus.OK);
     }
 
-    private ResponseEntity<AccountTransactionsResponse> validateTransactionsAccessForUser(
+    /**
+     * TODO: Implement pagination properly
+     */
+    private void handlePagination(int offset, int limit, AccountTransactionsResponse response) {
+        response.setPagination(new Pagination(offset, limit, response.getTransactions().size()));
+    }
+
+    private ResponseEntity<AccountTransactionsResponse> validateAccountAccessForUser(
             RequestContext requestContext, String accountNumber) {
         boolean transactionAccessPermittedForUser = false;
         try {
@@ -96,6 +108,4 @@ public class TransactionController {
         response.setErrors(List.of(accessNotPermittedError));
         return new ResponseEntity<AccountTransactionsResponse>(response, HttpStatus.UNAUTHORIZED);
     }
-
-
 }

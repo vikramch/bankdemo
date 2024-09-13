@@ -5,6 +5,7 @@ import com.vikram.macquarie.bankdemo.common.enums.AccountType;
 import com.vikram.macquarie.bankdemo.common.enums.Currency;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "accounts")
 @Data
+@NoArgsConstructor
 public class AccountEntity {
 
     /**
@@ -67,6 +69,7 @@ public class AccountEntity {
     @Column(name="opening_available_balance", nullable = false)
     private BigDecimal openingAvailableBalance;
 
-    public AccountEntity() {
+    public AccountEntity(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 }
