@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Setter
@@ -15,5 +16,6 @@ public class AccountTransactionsResponse extends BaseResponse {
 
     public AccountTransactionsResponse(Status status) {
         super(status);
+        transactions = new ArrayList<>();
     }
 }

@@ -14,10 +14,15 @@ import java.util.stream.Collectors;
 @Repository
 public interface AccountRepository extends JpaRepository<AccountEntity, String> {
 
-    default List<Account> getAccountsByUserId(String userId) {
-        return findAccountsByUserId(userId).stream()
-                .map(AccountMapper::getAccount)
-                .collect(Collectors.toList());
+    default List<Account> getAccountsByUserId(String userId) throws DatabaseException {
+        try {
+            return findAccountsByUserId(userId).stream()
+                    .map(AccountMapper::getAccount)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new DatabaseException("Error querying database", e);
+        }
+
     }
 
     @Query("SELECT a FROM AccountEntity a WHERE a.userEntity.userId = :userId")

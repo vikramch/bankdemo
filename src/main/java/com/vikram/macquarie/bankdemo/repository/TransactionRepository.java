@@ -13,10 +13,16 @@ import java.util.stream.Collectors;
 
 @Repository
 public interface TransactionRepository  extends JpaRepository<TransactionEntity, String> {
-    default List<Transaction> getTransactionsByAccountNumber(String accountNumber) {
-        return findTransactionsByAccountNumber(accountNumber).stream()
-                .map(TransactionMapper::getTransaction)
-                .collect(Collectors.toList());
+    default List<Transaction> getTransactionsByAccountNumber(String accountNumber)
+    throws DatabaseException {
+        try {
+            return findTransactionsByAccountNumber(accountNumber).stream()
+                    .map(TransactionMapper::getTransaction)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new DatabaseException("Error querying database", e);
+        }
+
     }
 
     @Query("SELECT t FROM TransactionEntity t WHERE t.accountEntity.accountNumber = :accountNumber")

@@ -1,11 +1,14 @@
 package com.vikram.macquarie.bankdemo.controller;
 
+import com.vikram.macquarie.bankdemo.common.error.Error;
+import com.vikram.macquarie.bankdemo.common.error.ErrorCodeEnum;
 import com.vikram.macquarie.bankdemo.context.RequestContext;
 import com.vikram.macquarie.bankdemo.domain.model.Account;
 import com.vikram.macquarie.bankdemo.response.AccountListResponse;
 import com.vikram.macquarie.bankdemo.response.Status;
 import com.vikram.macquarie.bankdemo.service.AccountService;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +21,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping
+@Slf4j
 public class AccountController {
 
     @Autowired
@@ -30,7 +34,7 @@ public class AccountController {
     @GetMapping("/accounts")
     public ResponseEntity<AccountListResponse> getAccountList(HttpServletRequest request) {
         /*
-         * For demo purposes, mocking the userId through a Request Header("user_id"),
+         * For demo purposes, getting the userId through a Request Header("user_id"),
          * In Prod, userId can be obtained from Security Context.
          */
         String userId  = Optional.ofNullable(request.getHeader("user_id")).orElse("1");
@@ -38,9 +42,16 @@ public class AccountController {
         RequestContext requestContext = new RequestContext(userId);
 
         //Fetch all accessible accounts
-        List<Account> accounts = accountService.fetchAllAccounts(requestContext);
-        AccountListResponse accountListResponse = new AccountListResponse(Status.SUCCESS);
-        accountListResponse.setAccounts(accounts);
-        return new ResponseEntity<AccountListResponse>(accountListResponse, HttpStatus.OK);
+        try {
+            List<Account> accounts = accountService.fetchAllAccounts(requestContext);
+            AccountListResponse accountListResponse = new AccountListResponse(Status.SUCCESS);
+            accountListResponse.setAccounts(accounts);
+            return new ResponseEntity<AccountListResponse>(accountListResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            log.error(String.format("Error accessing list of accounts for userId=%s", userId), e);
+            AccountListResponse accountListResponse = new AccountListResponse(Status.ERROR);
+            accountListResponse.setErrors(List.of(new Error(ErrorCodeEnum.INTERNAL_SERVICE_ERROR)));
+            return new ResponseEntity<AccountListResponse>(accountListResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

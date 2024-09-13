@@ -9,6 +9,12 @@ public class Error {
     private final String errorMessage;
     private final String errorDetail;
 
+    public Error(ErrorCodeIf errorCode) {
+        this.errorCode = errorCode.getErrorCode();
+        this.errorMessage = errorCode.getErrorMessage();
+        this.errorDetail = null;
+    }
+
     public Error(ErrorCodeIf errorCode, String errorDetail) {
         this.errorCode = errorCode.getErrorCode();
         this.errorMessage = errorCode.getErrorMessage();
