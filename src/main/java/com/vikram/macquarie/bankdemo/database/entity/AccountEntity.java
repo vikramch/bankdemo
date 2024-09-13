@@ -6,6 +6,7 @@ import com.vikram.macquarie.bankdemo.common.enums.Currency;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -25,7 +26,8 @@ public class AccountEntity {
      */
     /**
      * Using Account number as Primary key,
-     * don't want to depend on Generated values of the database.
+     * don't want to depend on Generated values of the database,
+     * see reasons above.
      */
     @Id
     @Column(name="account_number", nullable = false)
@@ -34,6 +36,10 @@ public class AccountEntity {
     @OneToMany(mappedBy = "accountEntity")
     @JsonIgnore //needed to avoid infinite recursion
     List<TransactionEntity> transactionEntities;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private UserEntity userEntity;
 
 
     @Column(name="account_name", nullable = false)
@@ -58,14 +64,8 @@ public class AccountEntity {
     @Enumerated(EnumType.STRING)
     private Currency currency;
 
-    /**
-     * Max Value of Long is ~9223 trillion.
-     * To handle more than that,
-     *      Use BigInteger (or)
-     *      Use String or byte[] and use custom serialization/de-serialization.
-     */
     @Column(name="opening_available_balance", nullable = false)
-    private Long openingAvailableBalance;
+    private BigDecimal openingAvailableBalance;
 
     public AccountEntity() {
     }

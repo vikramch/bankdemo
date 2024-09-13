@@ -1,5 +1,6 @@
 package com.vikram.macquarie.bankdemo.service;
 
+import com.vikram.macquarie.bankdemo.context.RequestContext;
 import com.vikram.macquarie.bankdemo.domain.model.Account;
 import com.vikram.macquarie.bankdemo.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class AccountService {
     }
 
     // Get all Accounts
-    public List<Account> fetchAllAccounts() {
-        return accountRepository.findAllAccounts();
+    public List<Account> fetchAllAccounts(RequestContext requestContext) {
+        return accountRepository.getAccountsByUserId(requestContext.getUserId());
     }
 }

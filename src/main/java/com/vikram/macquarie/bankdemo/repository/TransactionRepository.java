@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 
 @Repository
 public interface TransactionRepository  extends JpaRepository<TransactionEntity, String> {
-    default List<Transaction> findAllTransactionsByAccountNumber(String accountNumber) {
-        return getTransactionsByAccountNumber(accountNumber).stream()
+    default List<Transaction> getTransactionsByAccountNumber(String accountNumber) {
+        return findTransactionsByAccountNumber(accountNumber).stream()
                 .map(transactionEntity -> {
-                    Transaction transaction = new Transaction(transactionEntity.getTransactionId(),
+                    return new Transaction(transactionEntity.getTransactionId(),
                             transactionEntity.getAccountEntity().getAccountName(),
                             transactionEntity.getAccountEntity().getAccountNumber(),
                             transactionEntity.getAccountEntity().getCurrency(),
@@ -25,19 +25,17 @@ public interface TransactionRepository  extends JpaRepository<TransactionEntity,
                             transactionEntity.getAmount(),
                             transactionEntity.getTransactionType(),
                             transactionEntity.getTransactionNarrative());
-
-                    return transaction;
                 })
                 .collect(Collectors.toList());
     }
 
     @Query("SELECT t FROM TransactionEntity t WHERE t.accountEntity.accountNumber = :accountNumber")
-    List<TransactionEntity> getTransactionsByAccountNumber(@Param("accountNumber") String accountNumber);
+    List<TransactionEntity> findTransactionsByAccountNumber(@Param("accountNumber") String accountNumber);
 
     default List<Transaction> findAllTransactions() {
         return findAll().stream()
                 .map(transactionEntity -> {
-                    Transaction transaction = new Transaction(transactionEntity.getTransactionId(),
+                    return new Transaction(transactionEntity.getTransactionId(),
                             transactionEntity.getAccountEntity().getAccountName(),
                             transactionEntity.getAccountEntity().getAccountNumber(),
                             transactionEntity.getAccountEntity().getCurrency(),
@@ -45,8 +43,6 @@ public interface TransactionRepository  extends JpaRepository<TransactionEntity,
                             transactionEntity.getAmount(),
                             transactionEntity.getTransactionType(),
                             transactionEntity.getTransactionNarrative());
-
-                    return transaction;
                 })
                 .collect(Collectors.toList());
     }

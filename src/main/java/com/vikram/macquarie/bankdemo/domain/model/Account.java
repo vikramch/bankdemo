@@ -4,6 +4,7 @@ import com.vikram.macquarie.bankdemo.common.enums.AccountType;
 import com.vikram.macquarie.bankdemo.common.enums.Currency;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -14,5 +15,5 @@ public class Account {
     private AccountType accountType;
     private LocalDate balanceDate;
     private Currency currency;
-    private Long openingAvailableBalance;
+    private BigDecimal openingAvailableBalance;
 }

@@ -8,7 +8,6 @@ Spring Boot app to support a web application that allows an user to view transac
 
 # Technical decisions
 - We are not depending on Database to generate unique identifiers for Account and Transaction entities
-- The Maximum Opening Available balance in an Account is ~9223 trillion
 
 # REST endpoints
 - Account List: GET http://localhost:8080/accounts

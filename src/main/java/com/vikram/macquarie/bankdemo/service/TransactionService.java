@@ -18,7 +18,7 @@ public class TransactionService {
     }
 
     public List<Transaction> getTransactionsByAccountNumber(String accountNumber) {
-        return transactionRepository.findAllTransactionsByAccountNumber(accountNumber);
+        return transactionRepository.getTransactionsByAccountNumber(accountNumber);
     }
 
     public List<Transaction> getAllTransactions() {

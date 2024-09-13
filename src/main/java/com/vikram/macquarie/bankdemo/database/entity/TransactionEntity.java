@@ -4,6 +4,7 @@ import com.vikram.macquarie.bankdemo.common.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -19,6 +20,11 @@ public class TransactionEntity {
      * - gives us Flexibility in length
      * - we will never run out of Transaction Ids.
      */
+    /**
+     * Transaction_id is the primary key
+     * Don't want to depend on Generated values of the database,
+     * see reasons above.
+     */
     @Id
     @Column(name="tx_id", nullable = false)
     private String transactionId;
@@ -31,7 +37,7 @@ public class TransactionEntity {
     private LocalDate valueDate;
 
     @Column(name="amount", nullable = false)
-    private Long amount;
+    private BigDecimal amount;
 
     /**
      * EnumType.ORDINAL can be used as well for performance,

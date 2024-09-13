@@ -5,6 +5,7 @@ import com.vikram.macquarie.bankdemo.common.enums.TransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -17,7 +18,7 @@ public class Transaction {
     private Currency currency;
 
     private LocalDate valueDate;
-    private Long amount;
+    private BigDecimal amount;
     private TransactionType transactionType;
     private String transactionNarrative;
 }
