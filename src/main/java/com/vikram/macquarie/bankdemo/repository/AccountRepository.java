@@ -1,9 +1,8 @@
 package com.vikram.macquarie.bankdemo.repository;
 
 import com.vikram.macquarie.bankdemo.database.entity.AccountEntity;
-import com.vikram.macquarie.bankdemo.database.entity.TransactionEntity;
 import com.vikram.macquarie.bankdemo.domain.model.Account;
-import com.vikram.macquarie.bankdemo.domain.model.Transaction;
+import com.vikram.macquarie.bankdemo.mapper.AccountMapper;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,14 +16,7 @@ public interface AccountRepository extends JpaRepository<AccountEntity, String> 
 
     default List<Account> getAccountsByUserId(String userId) {
         return findAccountsByUserId(userId).stream()
-                .map(accountEntity -> {
-                    return new Account(accountEntity.getAccountNumber(),
-                            accountEntity.getAccountName(),
-                            accountEntity.getAccountType(),
-                            accountEntity.getBalanceDate(),
-                            accountEntity.getCurrency(),
-                            accountEntity.getOpeningAvailableBalance());
-                })
+                .map(AccountMapper::getAccount)
                 .collect(Collectors.toList());
     }
 

@@ -21,4 +21,10 @@ public class AccountService {
     public List<Account> fetchAllAccounts(RequestContext requestContext) {
         return accountRepository.getAccountsByUserId(requestContext.getUserId());
     }
+
+    public  boolean doesUserHaveAccessToAccount(RequestContext requestContext, String accountNumber) {
+        List<Account> accounts = fetchAllAccounts(requestContext);
+        return accounts.stream().anyMatch(
+                (account) -> accountNumber.equals(account.getAccountNumber()));
+    }
 }

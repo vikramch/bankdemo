@@ -1,14 +1,19 @@
 package com.vikram.macquarie.bankdemo.response;
 
 import com.vikram.macquarie.bankdemo.domain.model.Transaction;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-@Data
-public class AccountTransactionsResponse {
+@Setter
+@Getter
+@EqualsAndHashCode(callSuper = true)
+public class AccountTransactionsResponse extends BaseResponse {
     private List<Transaction> transactions;
-    private int totalCount;
-    private int pageSize;
-    private int pageNumber;
+
+    public AccountTransactionsResponse(Status status) {
+        super(status);
+    }
 }

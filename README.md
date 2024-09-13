@@ -12,4 +12,9 @@ Spring Boot app to support a web application that allows an user to view transac
 # REST endpoints
 - Account List: GET http://localhost:8080/accounts
 - Account Transaction List: GET http://localhost:8080/account/585309209/transactions
-- Transaction List: GET http://localhost:8080/transactions
+
+# Entities
+- User
+- Account
+- Transaction
+
