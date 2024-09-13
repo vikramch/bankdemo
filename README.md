@@ -101,3 +101,10 @@ Spring Boot app to support a web application that allows an user to view transac
 
 # Integration Tests
 - TODO: Explore how to leverage H2 in-memory database for Integration testing
+
+# TODO
+- Add more logs for Splunk for better Observability & Monitoring
+- Leverage Spring security
+- Implement Pagination
+- Implement Integration Tests
+- Add more data to H2 Database
