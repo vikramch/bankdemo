@@ -9,17 +9,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public interface AccountRepository extends JpaRepository<AccountEntity, Long> {
+public interface AccountRepository extends JpaRepository<AccountEntity, String> {
 
     default List<Account> findAllAccounts() {
         return findAll().stream()
                 .map(accountEntity -> {
-                    Account account = new Account(accountEntity.getAccountNumber());
-                    account.setAccountName(accountEntity.getAccountName());
-                    account.setAccountType(accountEntity.getAccountType());
-                    account.setBalanceDate(accountEntity.getBalanceDate());
-                    account.setCurrency(accountEntity.getCurrency());
-                    account.setOpeningAvailableBalance(accountEntity.getOpeningAvailableBalance());
+                    Account account = new Account(accountEntity.getAccountNumber(),
+                            accountEntity.getAccountName(),
+                            accountEntity.getAccountType(),
+                            accountEntity.getBalanceDate(),
+                            accountEntity.getCurrency(),
+                            accountEntity.getOpeningAvailableBalance());
 
                     return account;
                 })

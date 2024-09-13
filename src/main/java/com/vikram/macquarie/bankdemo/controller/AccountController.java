@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/accounts")
+@RequestMapping
 public class AccountController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @GetMapping
+    @GetMapping("/accounts")
     public ResponseEntity<AccountListResponse> getAccountList() {
 
         List<Account> accounts = accountService.fetchAllAccounts();
