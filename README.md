@@ -14,19 +14,14 @@ Spring Boot app to support a web application that allows an user to view transac
 - Account
 - Transaction
 
-# Frameworks, Technologies, Architectures leveraged
-- Spring boot
-- Spring boot Web
-- REST architecture
-- Spring Data JPA
-- Hibernate
-- H2 Database
-- Lombok
-- Slf4j
-- Mockito
-- Junit5
+# H2 Database console
+- Use below console (after Starting the application) to connect to the Database and view the inserted data.
+- http://localhost:8080/h2-console
+- Username: sa
+- Password: macquarie
 
 # REST endpoints
+- After starting Application, you can hit below REST Endpoints (you can use Postman collection from [here](./API_Testing.postman_collection.json))
 - Account List: GET http://localhost:8080/accounts
 - Account Transaction List: GET http://localhost:8080/account/585309209/transactions
 
@@ -94,21 +89,33 @@ Spring Boot app to support a web application that allows an user to view transac
     "transactions": []
 }
 ```
-# Postman collection
+
+# Frameworks, Technologies, Architectures leveraged
+- Spring boot
+- Spring boot Web
+- REST architecture
+- Spring Data JPA
+- Hibernate
+- H2 Database
+- Lombok
+- Slf4j
+- Mockito
+- Junit5
 
 # Unit Tests
-- Unit tests are written, can be executed from Intellij or CLI
+- Unit tests are written, can be executed from Intellij or CLI by using below command.
 ```
 mvn test
 ```
 
 # Integration Tests
+- Execute below maven goal
 ````
 mvn test -Pintegration-tests
 ````
 
 # TODO
 - Add more logs for Splunk for better Observability & Monitoring
-- Leverage Spring security
 - Implement Pagination
 - Add more data to H2 Database
+- - Leverage Spring security
