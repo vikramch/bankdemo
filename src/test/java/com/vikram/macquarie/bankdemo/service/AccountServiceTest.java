@@ -33,11 +33,11 @@ class AccountServiceTest {
     private AccountService accountService;
 
     @Test
-    void fetchAllAccounts() throws Exception {
+    void getAllAccounts() throws Exception {
         when(mockAccountRepository.getAccountsByUserId(MockEntityUtil.mockUserEntity1.getUserId()))
                 .thenReturn(MockEntityUtil.getMockAccounts());
 
-        List<Account> accountList = accountService.fetchAllAccounts(
+        List<Account> accountList = accountService.getAllAccounts(
                 new RequestContext(MockEntityUtil.mockUserEntity1.getUserId()));
 
         verify(this.mockAccountRepository, times(1))

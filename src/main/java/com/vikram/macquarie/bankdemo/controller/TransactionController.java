@@ -51,7 +51,11 @@ public class TransactionController {
          */
         String userId  = Optional.ofNullable(request.getHeader("user_id")).orElse("1");
         //String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+        log.info(String.format("Fetching transactions for userId=%s and accountNumber=%s", userId, accountNumber));
         RequestContext requestContext = new RequestContext(userId);
+
+        //TO-DO: Validate if an Account with the Account number exists or not
+        //validateAccountNumber(accountNumber);
 
         //Check if User has permissions to Account to access its transactions
         ResponseEntity<AccountTransactionsResponse> errorResponse =
@@ -63,10 +67,12 @@ public class TransactionController {
         try {
             accountTransactions = transactionService.getTransactionsByAccountNumber(accountNumber);
         } catch (DataAccessException e) {
+            log.error(String.format("Error accessing list of Transactions for userId=%s and accountNumber=%s", userId, accountNumber), e);
             AccountTransactionsResponse response = new AccountTransactionsResponse(Status.ERROR);
-            response.setErrors(List.of(new Error(ErrorCodeEnum.ERROR_ACCESSING_DATA)));
+            response.setErrors(List.of(new Error(ErrorCodeEnum.ERROR_ACCESSING_TRANSACTIONS_DATA)));
             return new ResponseEntity<AccountTransactionsResponse>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
+            log.error(String.format("Error accessing list of Transactions for userId=%s and accountNumber=%s", userId, accountNumber), e);
             AccountTransactionsResponse response = new AccountTransactionsResponse(Status.ERROR);
             response.setErrors(List.of(new Error(ErrorCodeEnum.INTERNAL_SERVICE_ERROR)));
             return new ResponseEntity<AccountTransactionsResponse>(response, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -92,8 +98,10 @@ public class TransactionController {
             transactionAccessPermittedForUser =
                     accountService.doesUserHaveAccessToAccount(requestContext, accountNumber);
         } catch (Exception e) {
+            log.error(String.format("Error validating Account access for userId=%s and accountNumber=%s",
+                    requestContext.getUserId(), accountNumber), e);
             AccountTransactionsResponse response = new AccountTransactionsResponse(Status.ERROR);
-            response.setErrors(List.of(new Error(ErrorCodeEnum.ERROR_ACCESSING_DATA)));
+            response.setErrors(List.of(new Error(ErrorCodeEnum.ERROR_ACCESSING_ACCOUNTS_DATA)));
             return new ResponseEntity<AccountTransactionsResponse>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 

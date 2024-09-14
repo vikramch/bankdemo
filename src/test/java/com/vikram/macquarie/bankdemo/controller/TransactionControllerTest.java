@@ -88,7 +88,7 @@ class TransactionControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
         assertEquals(Status.ERROR, Objects.requireNonNull(response.getBody()).getStatus());
         assertEquals(1, response.getBody().getErrors().size());
-        assertEquals(ErrorCodeEnum.ERROR_ACCESSING_DATA.getErrorCode(), response.getBody().getErrors().get(0).getErrorCode());
+        assertEquals(ErrorCodeEnum.ERROR_ACCESSING_TRANSACTIONS_DATA.getErrorCode(), response.getBody().getErrors().get(0).getErrorCode());
     }
 
     @Test

@@ -42,12 +42,13 @@ public class AccountController {
          * In Prod, userId can be obtained from Security Context.
          */
         String userId  = Optional.ofNullable(request.getHeader("user_id")).orElse("1");
+        log.info(String.format("Fetching accounts for userId=%s", userId));
         //String userId = SecurityContextHolder.getContext().getAuthentication().getName();
         RequestContext requestContext = new RequestContext(userId);
 
         //Fetch all accessible accounts
         try {
-            List<Account> accounts = accountService.fetchAllAccounts(requestContext);
+            List<Account> accounts = accountService.getAllAccounts(requestContext);
             AccountListResponse accountListResponse = new AccountListResponse(Status.SUCCESS);
             accountListResponse.setAccounts(accounts);
             handlePagination(offset, limit, accountListResponse);
@@ -55,7 +56,7 @@ public class AccountController {
         } catch (Exception e) {
             log.error(String.format("Error accessing list of accounts for userId=%s", userId), e);
             AccountListResponse accountListResponse = new AccountListResponse(Status.ERROR);
-            accountListResponse.setErrors(List.of(new Error(ErrorCodeEnum.INTERNAL_SERVICE_ERROR)));
+            accountListResponse.setErrors(List.of(new Error(ErrorCodeEnum.ERROR_ACCESSING_ACCOUNTS_DATA)));
             return new ResponseEntity<AccountListResponse>(accountListResponse, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

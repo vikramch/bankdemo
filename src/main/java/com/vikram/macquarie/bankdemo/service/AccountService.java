@@ -20,7 +20,7 @@ public class AccountService {
     }
 
     // Get all Accounts
-    public List<Account> fetchAllAccounts(@NonNull RequestContext requestContext)
+    public List<Account> getAllAccounts(@NonNull RequestContext requestContext)
     throws DataAccessException {
         try {
             return accountRepository.getAccountsByUserId(requestContext.getUserId());
@@ -33,7 +33,7 @@ public class AccountService {
     public  boolean doesUserHaveAccessToAccount(@NonNull RequestContext requestContext,
                                                 @NonNull String accountNumber)
     throws DataAccessException {
-        List<Account> accounts = fetchAllAccounts(requestContext);
+        List<Account> accounts = getAllAccounts(requestContext);
         return accounts.stream().anyMatch(
                 (account) -> accountNumber.equals(account.getAccountNumber()));
     }

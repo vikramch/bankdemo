@@ -37,7 +37,7 @@ class AccountControllerTest {
     void testGetAccountListSuccess() throws Exception {
         // Arrange
         when(request.getHeader("user_id")).thenReturn(MockEntityUtil.mockUserEntity1.getUserId());
-        when(accountService.fetchAllAccounts(any())).thenReturn(MockEntityUtil.getMockAccounts());
+        when(accountService.getAllAccounts(any())).thenReturn(MockEntityUtil.getMockAccounts());
 
         // Act
         ResponseEntity<AccountListResponse> response = accountController.getAccountList(request, 0, 10);
@@ -52,7 +52,7 @@ class AccountControllerTest {
     void testGetAccountListError() throws DataAccessException {
         // Arrange
         when(request.getHeader("user_id")).thenReturn(MockEntityUtil.mockUserEntity1.getUserId());
-        when(accountService.fetchAllAccounts(any())).thenThrow(new RuntimeException());
+        when(accountService.getAllAccounts(any())).thenThrow(new RuntimeException());
 
         // Act
         ResponseEntity<AccountListResponse> response = accountController.getAccountList(request, 0, 10);
@@ -61,6 +61,6 @@ class AccountControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
         assertEquals(Status.ERROR, Objects.requireNonNull(response.getBody()).getStatus());
         assertEquals(1, response.getBody().getErrors().size());
-        assertEquals(ErrorCodeEnum.INTERNAL_SERVICE_ERROR.getErrorCode(), response.getBody().getErrors().getFirst().getErrorCode());
+        assertEquals(ErrorCodeEnum.ERROR_ACCESSING_ACCOUNTS_DATA.getErrorCode(), response.getBody().getErrors().getFirst().getErrorCode());
     }
 }
