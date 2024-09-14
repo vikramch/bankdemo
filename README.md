@@ -1,6 +1,6 @@
 # Bank Demo Application
-Spring Boot app to support a web application that allows an user to view transactions on any of the accounts they hold.
-
+- Spring Boot app to support a web application that allows an user to view transactions on any of the accounts they hold.
+- Done by Vikram Chunduru as part of assessment for Macquarie Group
 ## Requirement Assumptions
 - All Transactions in a Account of a particular Currency Type will be of the same Currency Type
 
