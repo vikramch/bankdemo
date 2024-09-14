@@ -128,5 +128,4 @@ mvn test -Pintegration-tests
 ## TODO
 - Add more logs for Splunk for better Observability & Monitoring
 - Implement Pagination
-- Add more data to H2 Database
 - Leverage Spring security
