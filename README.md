@@ -1,26 +1,36 @@
 # Bank Demo Application
 Spring Boot app to support a web application that allows an user to view transactions on any of the accounts they hold.
 
-# Requirement Assumptions
+## Requirement Assumptions
 - All Transactions in a Account of a particular Currency Type will be of the same Currency Type
-- Users can query Transactions for a particular account (or) across all Accounts
 
 
-# Technical decisions
+## Technical decisions
 - We are not depending on Database to generate unique identifiers for Account and Transaction entities
+- Refer [AccountEntity](src/main/java/com/vikram/macquarie/bankdemo/database/entity/AccountEntity.java) and [TransactionEntity](src/main/java/com/vikram/macquarie/bankdemo/database/entity/TransactionEntity.java) for more details
 
-# Entities
+## Starting the Application
+- Go to [BankdemoApplication](src/main/java/com/vikram/macquarie/bankdemo/BankdemoApplication.java) in Intellij and start from Intellij using 'Run' configurations
+- Using CLI
+```
+cd ~/mydev/bankdemo //Go to the root folder of the git repo where you placed it
+mvn clean compile //Compile the code
+mvn spring-boot:run //Run the application
+```
+
+## Entities & Data
 - User
 - Account
 - Transaction
+- Refer [entities](src/main/java/com/vikram/macquarie/bankdemo/database/entity) folder
 
-# H2 Database console
+### H2 Database console
 - Use below console (after Starting the application) to connect to the Database and view the inserted data.
 - http://localhost:8080/h2-console
 - Username: sa
 - Password: macquarie
 
-# REST endpoints
+## REST endpoints
 - After starting Application, you can hit below REST Endpoints (you can use Postman collection from [here](./API_Testing.postman_collection.json))
 - Account List: GET http://localhost:8080/accounts
 - Account Transaction List: GET http://localhost:8080/account/585309209/transactions
@@ -90,8 +100,9 @@ Spring Boot app to support a web application that allows an user to view transac
 }
 ```
 
-# Frameworks, Technologies, Architectures leveraged
-- Spring boot
+## Frameworks, Technologies, Architectures leveraged
+- Java 22
+- Spring boot:3.3.3
 - Spring boot Web
 - REST architecture
 - Spring Data JPA
@@ -102,20 +113,20 @@ Spring Boot app to support a web application that allows an user to view transac
 - Mockito
 - Junit5
 
-# Unit Tests
+## Unit Tests
 - Unit tests are written, can be executed from Intellij or CLI by using below command.
 ```
 mvn test
 ```
 
-# Integration Tests
+## Integration Tests
 - Execute below maven goal
 ````
 mvn test -Pintegration-tests
 ````
 
-# TODO
+## TODO
 - Add more logs for Splunk for better Observability & Monitoring
 - Implement Pagination
 - Add more data to H2 Database
-- - Leverage Spring security
+- Leverage Spring security
