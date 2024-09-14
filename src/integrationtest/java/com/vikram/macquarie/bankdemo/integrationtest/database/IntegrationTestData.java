@@ -1,4 +1,4 @@
-package com.vikram.macquarie.bankdemo.integrationtest;
+package com.vikram.macquarie.bankdemo.integrationtest.database;
 
 public class IntegrationTestData {
     public static final String TEST_USER_ID = "1";

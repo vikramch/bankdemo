@@ -32,7 +32,59 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "AccountsList",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "user_id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/accounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Sep 2024 03:23:08 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"SUCCESS\",\n    \"errors\": null,\n    \"pagination\": {\n        \"offset\": 0,\n        \"limit\": 20,\n        \"totalCount\": 11\n    },\n    \"accounts\": [\n        {\n            \"accountNumber\": \"585309209\",\n            \"accountName\": \"SGSavings726\",\n            \"accountType\": \"SAVINGS\",\n            \"balanceDate\": \"2018-11-08\",\n            \"currency\": \"SGD\",\n            \"openingAvailableBalance\": 84327.51\n        },\n        {\n            \"accountNumber\": \"791066619\",\n            \"accountName\": \"AUSavings933\",\n            \"accountType\": \"SAVINGS\",\n            \"balanceDate\": \"2018-11-08\",\n            \"currency\": \"AUD\",\n            \"openingAvailableBalance\": 88005.93\n        },\n        {\n            \"accountNumber\": \"321143048\",\n            \"accountName\": \"AUCurrent433\",\n            \"accountType\": \"CURRENT\",\n            \"balanceDate\": \"2018-11-08\",\n            \"currency\": \"AUD\",\n            \"openingAvailableBalance\": 38010.62\n        },\n        {\n            \"accountNumber\": \"347786244\",\n            \"accountName\": \"SGCurrent166\",\n            \"accountType\": \"CURRENT\",\n            \"balanceDate\": \"2018-11-08\",\n            \"currency\": \"SGD\",\n            \"openingAvailableBalance\": 50664.65\n        },\n        {\n            \"accountNumber\": \"680168913\",\n            \"accountName\": \"AUCurrent374\",\n            \"accountType\": \"CURRENT\",\n            \"balanceDate\": \"2018-11-08\",\n            \"currency\": \"AUD\",\n            \"openingAvailableBalance\": 41327.28\n        },\n        {\n            \"accountNumber\": \"136056165\",\n            \"accountName\": \"AUSavings938\",\n            \"accountType\": \"SAVINGS\",\n            \"balanceDate\": \"2018-11-08\",\n            \"currency\": \"AUD\",\n            \"openingAvailableBalance\": 48928.79\n        },\n        {\n            \"accountNumber\": \"453963528\",\n            \"accountName\": \"SGSavings842\",\n            \"accountType\": \"SAVINGS\",\n            \"balanceDate\": \"2018-11-08\",\n            \"currency\": \"SGD\",\n            \"openingAvailableBalance\": 72117.53\n        },\n        {\n            \"accountNumber\": \"334666982\",\n            \"accountName\": \"AUSavings253\",\n            \"accountType\": \"SAVINGS\",\n            \"balanceDate\": \"2018-11-08\",\n            \"currency\": \"AUD\",\n            \"openingAvailableBalance\": 20588.16\n        },\n        {\n            \"accountNumber\": \"793949180\",\n            \"accountName\": \"AUCurrent754\",\n            \"accountType\": \"CURRENT\",\n            \"balanceDate\": \"2018-11-08\",\n            \"currency\": \"AUD\",\n            \"openingAvailableBalance\": 88794.48\n        },\n        {\n            \"accountNumber\": \"768759901\",\n            \"accountName\": \"SGCurrent294\",\n            \"accountType\": \"CURRENT\",\n            \"balanceDate\": \"2018-11-08\",\n            \"currency\": \"SGD\",\n            \"openingAvailableBalance\": 5906.55\n        },\n        {\n            \"accountNumber\": \"847257972\",\n            \"accountName\": \"AUCurrent591\",\n            \"accountType\": \"CURRENT\",\n            \"balanceDate\": \"2018-11-08\",\n            \"currency\": \"AUD\",\n            \"openingAvailableBalance\": 92561.68\n        }\n    ]\n}"
+				}
+			]
 		},
 		{
 			"name": "GetTransactionsByAccountNumber",
@@ -59,7 +111,61 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "AccountTransactionsList",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "user_id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/account/585309209/transactions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"account",
+								"585309209",
+								"transactions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Sep 2024 03:29:33 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"SUCCESS\",\n    \"errors\": null,\n    \"pagination\": {\n        \"offset\": 0,\n        \"limit\": 100,\n        \"totalCount\": 12\n    },\n    \"transactions\": [\n        {\n            \"transactionId\": \"1\",\n            \"accountName\": \"SGSavings726\",\n            \"accountNumber\": \"585309209\",\n            \"currency\": \"SGD\",\n            \"valueDate\": \"2012-01-12\",\n            \"amount\": 9540.98,\n            \"transactionType\": \"CREDIT\",\n            \"transactionNarrative\": \"salary\"\n        },\n        {\n            \"transactionId\": \"2\",\n            \"accountName\": \"SGSavings726\",\n            \"accountNumber\": \"585309209\",\n            \"currency\": \"SGD\",\n            \"valueDate\": \"2012-01-12\",\n            \"amount\": 7497.82,\n            \"transactionType\": \"CREDIT\",\n            \"transactionNarrative\": \"interest\"\n        },\n        {\n            \"transactionId\": \"3\",\n            \"accountName\": \"SGSavings726\",\n            \"accountNumber\": \"585309209\",\n            \"currency\": \"SGD\",\n            \"valueDate\": \"2012-01-12\",\n            \"amount\": 5564.79,\n            \"transactionType\": \"CREDIT\",\n            \"transactionNarrative\": \"payback\"\n        },\n        {\n            \"transactionId\": \"4\",\n            \"accountName\": \"SGSavings726\",\n            \"accountNumber\": \"585309209\",\n            \"currency\": \"SGD\",\n            \"valueDate\": \"2012-01-12\",\n            \"amount\": 8136.18,\n            \"transactionType\": \"CREDIT\",\n            \"transactionNarrative\": \"kickback\"\n        },\n        {\n            \"transactionId\": \"5\",\n            \"accountName\": \"SGSavings726\",\n            \"accountNumber\": \"585309209\",\n            \"currency\": \"SGD\",\n            \"valueDate\": \"2012-01-12\",\n            \"amount\": 9442.46,\n            \"transactionType\": \"CREDIT\",\n            \"transactionNarrative\": \"\"\n        },\n        {\n            \"transactionId\": \"6\",\n            \"accountName\": \"SGSavings726\",\n            \"accountNumber\": \"585309209\",\n            \"currency\": \"SGD\",\n            \"valueDate\": \"2012-01-12\",\n            \"amount\": 7614.45,\n            \"transactionType\": \"CREDIT\",\n            \"transactionNarrative\": \"\"\n        },\n        {\n            \"transactionId\": \"7\",\n            \"accountName\": \"SGSavings726\",\n            \"accountNumber\": \"585309209\",\n            \"currency\": \"SGD\",\n            \"valueDate\": \"2012-01-12\",\n            \"amount\": 3311.55,\n            \"transactionType\": \"CREDIT\",\n            \"transactionNarrative\": \"\"\n        },\n        {\n            \"transactionId\": \"8\",\n            \"accountName\": \"SGSavings726\",\n            \"accountNumber\": \"585309209\",\n            \"currency\": \"SGD\",\n            \"valueDate\": \"2012-01-12\",\n            \"amount\": 9186.09,\n            \"transactionType\": \"CREDIT\",\n            \"transactionNarrative\": \"\"\n        },\n        {\n            \"transactionId\": \"9\",\n            \"accountName\": \"SGSavings726\",\n            \"accountNumber\": \"585309209\",\n            \"currency\": \"SGD\",\n            \"valueDate\": \"2012-01-12\",\n            \"amount\": 1905.86,\n            \"transactionType\": \"CREDIT\",\n            \"transactionNarrative\": \"\"\n        },\n        {\n            \"transactionId\": \"10\",\n            \"accountName\": \"SGSavings726\",\n            \"accountNumber\": \"585309209\",\n            \"currency\": \"SGD\",\n            \"valueDate\": \"2012-01-12\",\n            \"amount\": 197.78,\n            \"transactionType\": \"CREDIT\",\n            \"transactionNarrative\": \"\"\n        },\n        {\n            \"transactionId\": \"11\",\n            \"accountName\": \"SGSavings726\",\n            \"accountNumber\": \"585309209\",\n            \"currency\": \"SGD\",\n            \"valueDate\": \"2012-01-12\",\n            \"amount\": 8430.49,\n            \"transactionType\": \"CREDIT\",\n            \"transactionNarrative\": \"\"\n        },\n        {\n            \"transactionId\": \"12\",\n            \"accountName\": \"SGSavings726\",\n            \"accountNumber\": \"585309209\",\n            \"currency\": \"SGD\",\n            \"valueDate\": \"2012-01-12\",\n            \"amount\": 8.33,\n            \"transactionType\": \"CREDIT\",\n            \"transactionNarrative\": \"\"\n        }\n    ]\n}"
+				}
+			]
 		},
 		{
 			"name": "GetTransactionsByAccountNumber - Access error",
@@ -86,7 +192,61 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "AccountTransactionListAccessError",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "user_id",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/account/585309209/transactions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"account",
+								"585309209",
+								"transactions"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Sep 2024 03:30:05 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"ERROR\",\n    \"errors\": [\n        {\n            \"errorCode\": \"ACCOUNT_ACCESS_DENIED\",\n            \"errorMessage\": \"You do not have permission to access this account.\",\n            \"errorDetail\": \"User=2 doesn't have permission to access Account=585309209\"\n        }\n    ],\n    \"pagination\": null,\n    \"transactions\": []\n}"
+				}
+			]
 		}
 	]
 }

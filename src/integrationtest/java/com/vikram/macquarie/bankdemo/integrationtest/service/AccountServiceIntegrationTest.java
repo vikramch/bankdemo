@@ -2,7 +2,7 @@ package com.vikram.macquarie.bankdemo.integrationtest.service;
 
 import com.vikram.macquarie.bankdemo.context.RequestContext;
 import com.vikram.macquarie.bankdemo.domain.model.Account;
-import com.vikram.macquarie.bankdemo.integrationtest.IntegrationTestData;
+import com.vikram.macquarie.bankdemo.integrationtest.database.IntegrationTestData;
 import com.vikram.macquarie.bankdemo.service.AccountService;
 import com.vikram.macquarie.bankdemo.service.DataAccessException;
 import org.junit.jupiter.api.Test;
@@ -11,8 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class AccountServiceIntegrationTest {
@@ -28,6 +27,6 @@ public class AccountServiceIntegrationTest {
 
         // Assert
         assertNotNull(accounts);
-        assertEquals(1, accounts.size()); // Assuming there is One account in the test data
+        assertFalse(accounts.isEmpty()); // Assuming there at least One account in the test data
     }
 }

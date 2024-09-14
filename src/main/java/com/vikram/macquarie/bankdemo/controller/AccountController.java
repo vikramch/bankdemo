@@ -36,7 +36,7 @@ public class AccountController {
     @GetMapping("/accounts")
     public ResponseEntity<AccountListResponse> getAccountList(HttpServletRequest request,
                                                               @RequestParam(defaultValue = "0") int offset,
-                                                              @RequestParam(defaultValue = "10") int limit) {
+                                                              @RequestParam(defaultValue = "20") int limit) {
         /*
          * For demo purposes, getting the userId through a Request Header("user_id"),
          * In Prod, userId can be obtained from Security Context.
