@@ -9,6 +9,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service for managing transactions.
+ *
+ * Provides business logic for:
+ * - Retrieving transactions for a specific account
+ *
+ * Acts as an intermediary between the TransactionController and the TransactionRepository.
+ */
 @Service
 public class TransactionService {
 

@@ -10,6 +10,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service for managing user accounts.
+ *
+ * Provides business logic for:
+ * - Retrieving account information (balance, account number, etc.)
+ *
+ * Acts as an intermediary between the AccountsController and the AccountRepository.
+ */
 @Service
 public class AccountService {
     private final AccountRepository accountRepository;

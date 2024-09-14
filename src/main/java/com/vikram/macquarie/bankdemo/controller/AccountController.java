@@ -21,6 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controller for managing user accounts.
+ *
+ * Provides REST endpoints for:
+ * - Retrieving account information (balance, account number, etc.)
+ *
+ * All endpoints require authentication and authorization to ensure only account holders can access and modify their accounts.
+ */
 @RestController
 @RequestMapping
 @Slf4j

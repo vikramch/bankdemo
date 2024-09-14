@@ -11,6 +11,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Repository for accessing account data.
+ *
+ * Can provide CRUD (Create, Read, Update, Delete) operations for accounts.
+ *
+ * Acts as an intermediary between the AccountService and the database.
+ */
 @Repository
 public interface AccountRepository extends JpaRepository<AccountEntity, String> {
 

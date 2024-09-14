@@ -11,6 +11,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Repository for accessing transaction data.
+ *
+ * Can provide CRUD (Create, Read, Update, Delete) operations for transactions.
+ *
+ * Acts as an intermediary between the TransactionService and the database.
+ */
 @Repository
 public interface TransactionRepository  extends JpaRepository<TransactionEntity, String> {
     default List<Transaction> getTransactionsByAccountNumber(String accountNumber)

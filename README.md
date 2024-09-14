@@ -14,8 +14,8 @@
 - Using CLI
 ```
 cd ~/mydev/bankdemo //Go to the root folder of the git repo where you placed it
-mvn clean compile //Compile the code
-mvn spring-boot:run //Run the application
+mvn clean install
+mvn spring-boot:run
 ```
 
 ## Entities & Data

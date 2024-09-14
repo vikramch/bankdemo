@@ -24,6 +24,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controller for managing transactions.
+ * Provides REST endpoints for retrieving transactions associated with accounts held by authenticated users.
+ */
 @Controller
 @RequestMapping
 @Slf4j
